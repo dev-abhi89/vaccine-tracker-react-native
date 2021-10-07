@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "980405287874",
+    "project_id": "vaccine-tracker-625f9",
+    "storage_bucket": "vaccine-tracker-625f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980405287874:android:72b5dd612803896bbaf45b",
+        "android_client_info": {
+          "package_name": "com.covidrac"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980405287874-gbfh49jlsijghuta23au1pnoa01d6i3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQzZE9vnBpRh6DhZcq03-BPgeLUaVLBdg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980405287874-gbfh49jlsijghuta23au1pnoa01d6i3b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
