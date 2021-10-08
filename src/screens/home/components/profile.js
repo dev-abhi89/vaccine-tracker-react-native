@@ -4,6 +4,7 @@ import DatePicker from 'react-native-date-picker';
 import auth from '@react-native-firebase/auth';
 import { TextInput,Button,IconButton, Colors } from 'react-native-paper';
 import DatabaseServices from '../../../services/database_service';
+import {globalStyles} from '../../../styles/style'
 export default function Profile() {
 
     const [name,setName]=useState('');
@@ -32,10 +33,10 @@ export default function Profile() {
                 </Text>
                 <View style={{marginHorizontal:30}}>
 
-                <TextInput onChangeText={(val)=>setName(val)} val={name} left={<TextInput.Icon name="account" />}  type='flat' label="Full Name" style={{marginVertical:10,borderRadius:20}}  placeholder="Enter Your Full Name"/>
-                <TextInput onChangeText={(val)=>setId(val)} val={name} left={<TextInput.Icon name="key" />}  type='flat' label="Beneficiary Id" style={{marginVertical:10,borderRadius:20}}  placeholder="Enter Your Beneficiary ID" />
+                <TextInput onChangeText={(val)=>setName(val)} val={name} left={<TextInput.Icon name="account" />}  type='flat' label="Full Name" style={[globalStyles.txt,globalStyles.round,{marginVertical:10,borderRadius:20}]} placeholder="Enter Your Full Name"/>
+                <TextInput onChangeText={(val)=>setId(val)} val={name} left={<TextInput.Icon name="key" />}  type='flat' label="Beneficiary Id" style={[globalStyles.txt,globalStyles.round,{marginVertical:10,borderRadius:20}]}  placeholder="Enter Your Beneficiary ID" />
                 <View style={{flexDirection:'row' ,justifyContent:'space-between' ,marginVertical:10}}>
-                    <TextInput disabled={true} value={date.toDateString()} placeholder="Select your 1st dose"  label="1st dose date"/>
+                    <TextInput disabled={true} value={date.toDateString()} placeholder="Select your 1st dose" style={[globalStyles.txt,globalStyles.round,{width:250}]}  label="1st dose date"/>
                     
                     <IconButton  icon="clock" onPress={() => setOpen(true)} size={35} color={Colors.purple800} style={{}}/>
                 </View>
@@ -58,7 +59,7 @@ export default function Profile() {
 
 <Button icon="send" onPress={()=>{ 
     if(validation(name,date,id)){
-    DatabaseServices.setData(name,date.toDateString(),id,auth().currentUser.uid);}}} mode="contained" style={{marginVertical:10}} >
+    DatabaseServices.setData(name,date.toDateString(),id,auth().currentUser.uid);}}} mode="contained" style={globalStyles.btn} >
 SetDetails
   
   </Button>
