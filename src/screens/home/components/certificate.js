@@ -4,7 +4,7 @@ import uuid,{v1 as uuidv1} from 'uuid';
 import auth from '@react-native-firebase/auth';
 
 import React,{useState} from 'react'
-import { View,StyleSheet,Text,Image,ActivityIndicator} from 'react-native'
+import { View,StyleSheet,Text,Image} from 'react-native'
 import DatabaseServices from "../../../services/database_service";
 import { Button } from "react-native-paper";
 
@@ -56,7 +56,7 @@ const uploadfunc = async(img)=>{
 
 
     return (
-        <View>
+        <View style={style.box}>
             <Text style={style.txt}>Certificate Section</Text>
             
             { url==="" ? <></>:url==="unfill"?<Button mode='contained'onPress={()=>{imgPicker();}} style={style.btn}>
@@ -69,9 +69,20 @@ const uploadfunc = async(img)=>{
 
 const style = StyleSheet.create({
 
-btn:{width:200, alignSelf:'center'},
-img:{ height: 300,margin:10,borderRadius:5},
-txt:{fontSize:20,fontWeight:'700', alignSelf:'center' ,marginVertical:15}
+btn:{width:200,
+     alignSelf:'center'},
+img:{ height: 300,
+    margin:10,
+    borderRadius:8},
+txt:{fontSize:20,
+    fontWeight:'700',
+     alignSelf:'center',
+     marginVertical:15},
+box:{
+    elevation:20,
+    color:'#f7efe1',
+
+}
 
 
 

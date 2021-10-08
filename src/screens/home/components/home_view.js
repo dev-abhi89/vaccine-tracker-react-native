@@ -5,8 +5,8 @@ import { Colors } from 'react-native-paper'
 export default function HomeView({name,id,date}) {
     return (
         <View style={style.container} >
-            <View style={[style.row,{elevation:15,backgroundColor:'white'}]} >
-            <Text style={style.haeading}>
+            <View style={[style.row]} >
+            <Text  style={style.haeading}>
                 Name
             </Text>
             <Text style={style.value}>
@@ -14,7 +14,7 @@ export default function HomeView({name,id,date}) {
             </Text>
 
             </View>
-            <View style={[style.row,{elevation:15,backgroundColor:'white'}]} >
+            <View style={[style.row]} >
             <Text style={style.haeading}>
                 Beneficiary Id
             </Text>
@@ -23,7 +23,7 @@ export default function HomeView({name,id,date}) {
             </Text>
 
             </View>
-            <View style={[style.row,{elevation:15,backgroundColor:'white'}]} >
+            <View style={[style.row]} >
             <Text style={style.haeading}>
                 Date of 1st dose
             </Text>
@@ -38,13 +38,14 @@ export default function HomeView({name,id,date}) {
 }
 
 const style = StyleSheet.create({
-
-
-    container:{ backgroundColor:Colors.white,borderRadius:15,padding:10,elevation:10}
-    ,row:{flexDirection:'row',marginVertical:1,paddingVertical:10 ,justifyContent:'space-around' },
+//f7efe1
+//f7f1e5
+    container:{backgroundColor:'#f7efe1',marginTop:20,margin:10 ,backgroundColor:Colors.white,borderRadius:15,padding:10,elevation:10}
+    ,row:{flexDirection:'row',marginVertical:1,paddingVertical:10 ,justifyContent:'space-between' },
     haeading:{
-        fontSize:22,
-        fontWeight:'900',
+        textAlign:'right'
+        ,fontSize:22,
+        fontWeight:'700',
     },
     value:{
         fontSize:20,
