@@ -1,6 +1,6 @@
 import React ,{useState,useEffect} from 'react';
 import { View, Text,StyleSheet,ScrollView } from 'react-native';
-import { Appbar, Button } from 'react-native-paper';
+import { Appbar, Button,Colors } from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import Authservice from '../../services/auth_service';
@@ -40,7 +40,7 @@ const [form,setForm]=useState(false);
 <Appbar.Action icon="logout" onPress={()=>Authservice.signout()} />
 </Appbar>
 
-            <Text  style={{fontSize:24,fontWeight:'700',textAlign:'center'}}>Your Covid Details</Text>
+            <Text  style={styles.headtitle}>Your Covid Details</Text>
            
            {data.id==="unfill"? <Profile/>:  <View>
           <HomeView name={data.name} id={data.id} date={data.date.toString()}/>
@@ -58,7 +58,11 @@ const [form,setForm]=useState(false);
 const styles=StyleSheet.create({
 container:{
     flex:1
-    ,backgroundColor:'#fffff'
+    ,backgroundColor:[Colors.amber200,Colors.brown200]
+},
+headtitle:{fontSize:24,
+  fontWeight:'700',
+  textAlign:'center'
 }
 
 

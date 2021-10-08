@@ -59,13 +59,13 @@ export default function AuthScreen({ navigation }) {
         />
       </Appbar>
 
-
+    
       <View style={{ marginTop: 10, marginBottom: 20 }}>
         <Text style={{ textAlign: 'center', fontSize: 20, fontWeight: '700' }}> Track Your Vaccine </Text>
       </View>
-
-      <View style={style.container}>
-        <View style={{ marginHorizontal: 30 }}>
+     
+      <View >
+        <View style={{ marginHorizontal: 30,marginVertical:20 }}>
           <TextInput value={email} onChangeText={(val) => setEmail(val)} left={<TextInput.Icon name="email" />} type='flat' label="Email" onChange={() => setEmail} underlineColor="transparent" style={[style.input, style.round]} placeholder="Enter Your Email" />
           <TextInput value={pass} onChangeText={(val) => setPass(val)} left={<TextInput.Icon name="lock" />} type='flat' onChange={() => setPass} label="password" underlineColor="transparent" style={[style.input, style.round]} placeholder="Enter Your Password" secureTextEntry />
 
@@ -80,14 +80,16 @@ export default function AuthScreen({ navigation }) {
 
 
           <Text style=
-            {style.txt} onPress={() => { setScreen(!screen); cleardata(); }}>{screen ? 'Create a user account' : 'Switch to login page'}</Text>
+            {[style.txt,{marginTop:10}]} onPress={() => { setScreen(!screen); cleardata(); }}>{screen ? 'Create a user account' : 'Switch to login page'}</Text>
 
         </View>
+      
       </View>
-      <View style={{flex:-1,justifyContent:'flex-end', overflow:'hidden'}}>
+      <View style={{ overflow:'hidden'}}>
       <Image style={style.img} source={require('../assets/images/three_doc.png')} />
 
       </View>
+    
     </View>
   );
 }
@@ -101,14 +103,15 @@ const style = StyleSheet.create({
   , btn: {
 
     borderRadius: 20,
-    width: 200,
+    width: 250,
     alignSelf: 'center',
-    marginTop: 10
+    marginTop: 20
   },
   txt: {
     textAlign: 'center',
     fontSize: 20,
-    fontWeight: '600'
+    fontWeight: '600',
+    
   },
   container: {
     flex: 1,
