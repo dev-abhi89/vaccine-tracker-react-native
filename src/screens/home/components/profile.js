@@ -56,7 +56,7 @@ export default function Profile({navigation}) {
                 <TextInput onChangeText={(val)=>setName(val)} value={name} left={<TextInput.Icon name="account" color={Colors.purple800} />} selectionColor={Colors.white}  type='flat' label="Full Name" style={[globalStyles.txt,globalStyles.round,{color:Colors.pink800,marginVertical:10,textAlign:'left',borderRadius:20}]} placeholder="Enter Your Full Name"/>
                 <TextInput onChangeText={(val)=>setId(val)} value={id} left={<TextInput.Icon  name="key" color={Colors.purple800} />}  type='flat' selectionColor={Colors.white}   label="Beneficiary Id" style={[globalStyles.txt,globalStyles.round,{marginVertical:10,textAlign:'left',borderRadius:20}]}  placeholder="Enter Your Beneficiary ID" />
                 <View style={{flexDirection:'row' ,justifyContent:'space-between' ,marginVertical:10}}>
-                    <TextInput disabled={true} value={date.toDateString()} placeholder="Select your 1st dose" style={[globalStyles.txt,globalStyles.round,{width:250}]}  label="1st dose date"/>
+                    <TextInput disabled={true} value={date.toISOString().split('T')[0]} placeholder="Select your 1st dose" style={[globalStyles.txt,globalStyles.round,{width:250}]}  label="1st dose date"/>
                     
                     <IconButton  icon="clock" onPress={() => setOpen(true)} size={35} color={Colors.purple800} style={{}}/>
                 </View>
@@ -79,7 +79,7 @@ export default function Profile({navigation}) {
 
 <Button icon="send" onPress={()=>{ 
     if(validation(name,date,id)){
-    DatabaseServices.setData(name,date.toDateString(),id,auth().currentUser.uid);}
+    DatabaseServices.setData(name,date.toISOString(),id,auth().currentUser.uid);}
    navigation.pop(); }} mode="contained" style={globalStyles.btn} >
 SetDetails
   

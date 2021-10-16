@@ -52,10 +52,10 @@ export default function AuthScreen({ navigation }) {
 
   return (
     <View style={{ backgroundColor: '#f7f1e5', flex: 1 }}>
-      <Appbar>
+      <Appbar style={{backgroundColor:'#ff9551'}}>
 
 
-        <Appbar.Content title={screen ? "Login" : "SignUp"}
+        <Appbar.Content title={screen ? "Login" : "SignUp"} color='white'
         />
       </Appbar>
 
@@ -66,8 +66,8 @@ export default function AuthScreen({ navigation }) {
      
       <View >
         <View style={{ marginHorizontal: 30,marginVertical:20 }}>
-          <TextInput value={email} onChangeText={(val) => setEmail(val)} left={<TextInput.Icon name="email" />} type='flat' label="Email" onChange={() => setEmail} underlineColor="transparent" style={[style.input, style.round]} placeholder="Enter Your Email" />
-          <TextInput value={pass} onChangeText={(val) => setPass(val)} left={<TextInput.Icon name="lock" />} type='flat' onChange={() => setPass} label="password" underlineColor="transparent" style={[style.input, style.round]} placeholder="Enter Your Password" secureTextEntry />
+          <TextInput theme={{colors:{primary:'#ff9551'}}} value={email} onChangeText={(val) => setEmail(val)} left={<TextInput.Icon name="email" color='#ff9551' />} type='flat' label="Email" onChange={() => setEmail} underlineColor="transparent" style={[style.input, style.round]} placeholder="Enter Your Email" />
+          <TextInput theme={{colors:{primary:'#ff9551'}}} value={pass} onChangeText={(val) => setPass(val)} left={<TextInput.Icon name="lock" color='#ff9551' />} type='flat' onChange={() => setPass} label="password" underlineColor="transparent" style={[style.input, style.round]} placeholder="Enter Your Password" secureTextEntry />
 
           <Button loading={loading} icon="send" labelStyle={style.txt} mode="contained" style={style.btn} onPress={() => {
             screen ? signin() : signup();
@@ -105,7 +105,8 @@ const style = StyleSheet.create({
     borderRadius: 20,
     width: 250,
     alignSelf: 'center',
-    marginTop: 20
+    marginTop: 20,
+    backgroundColor:'#ff9551'
   },
   txt: {
     textAlign: 'center',

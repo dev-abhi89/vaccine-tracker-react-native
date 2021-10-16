@@ -59,7 +59,7 @@ const uploadfunc = async(img)=>{
         <View style={style.box}>
           <View style={{marginHorizontal:18,fexDirection:'row',justifyContent:'space-between'}}>
               <Text style={style.txt}>Certificate Section</Text>
-              <IconButton icon="pencil" size={28} color={Colors.pink600} onPress={()=>{imgPicker();}} style={{position:'absolute',bottom:5,right:5,backgroundColor:Colors.pink100}}/>
+              <IconButton icon="pencil" size={28} color='#ff9551' onPress={()=>{imgPicker();}} style={{position:'absolute',bottom:5,right:5,backgroundColor:'#ffdfca'}}/>
 
               </View>  
             

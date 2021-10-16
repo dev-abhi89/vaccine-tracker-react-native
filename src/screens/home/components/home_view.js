@@ -7,7 +7,7 @@ export default function HomeView({name,id,date, navigation}) {
         <View>
          <View style={{marginHorizontal:18,fexDirection:'row',justifyContent:'space-between'}}>
               <Text style={style.txt}>info Section</Text>
-              <IconButton icon="pencil" size={28} color={Colors.pink600} onPress={()=>{navigation.navigate('Hometest')}} style={{position:'absolute',bottom:5,right:5,backgroundColor:Colors.pink100}}/>
+              <IconButton icon="pencil" size={28} color='#ff9551' onPress={()=>{navigation.navigate('profile')}} style={{position:'absolute',bottom:5,right:5,backgroundColor:'#ffdfca'}}/>
 
               </View>  
         <View style={style.container} >

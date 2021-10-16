@@ -8,10 +8,12 @@ import Profile from './components/profile';
 import DatabaseServices from '../../services/database_service';
 import HomeView from './components/home_view';
 import Certificate from './components/certificate';
+import * as AddCalendarEvent from 'react-native-add-calendar-event';
 
 
 
 export default function Home({navigation}) {
+
  const [update,setUpdate]=useState(false); 
 const [data,setData]=useState({name:"",
                                 date:"",
@@ -35,18 +37,28 @@ const [form,setForm]=useState(false);
 
 
 },[])
+function eventDate(){
+  let dte = data.date.split('-');
+  dte[1]=3+ +dte[1];
+  if(dte[1]>12){
+    dte[1]=dte[1]-12;
+    dte[0]=1+ +dte[0];
+  }
+ return dte.join('-');
+
+}
  
    return (
         <ScrollView style={styles.container} >
-    <Appbar>
-<Appbar.Content title="Home"/>
-<Appbar.Action icon="logout" onPress={()=>Authservice.signout()} />
+    <Appbar style={{backgroundColor:'#ff9551'}}>
+<Appbar.Content title="Home" color='white'/>
+<Appbar.Action icon="logout" color='white' onPress={()=>Authservice.signout()} />
 </Appbar>
-
+            
             <Text  style={styles.headtitle}>Your Covid Details</Text>
-           
+                
            {data.id==="unfill"? <Profile navigation={navigation}/>:  <View>
-          <HomeView name={data.name} id={data.id} date={data.date.toString()} navigation={navigation}/>
+          <HomeView name={data.name} id={data.id}  date={data.date.split('T')[0]} navigation={navigation}/>
             </View>}
 
         
@@ -54,9 +66,8 @@ const [form,setForm]=useState(false);
            <Certificate url={data.certificate} />
            </View>
            <View style={styles.view}>
-             <Text style={styles.head1}> Do GaJ Ki Doori </Text>
-             <Text style={styles.head2}> Mask he Jaroori</Text>
-             <Image source={require('../../assets/images/three_girl.png')} style={styles.img}/>
+            
+             <Image source={require('../../assets/images/lets_vac.jpg')} style={styles.img}/>
            </View>
            <View style={{flexDirection:'row'}}>
 <View style={{width:'50%',marginTop:40}}>
@@ -66,6 +77,20 @@ const [form,setForm]=useState(false);
 </View>
 <Image source={require('../../assets/images/mask_doc.png')} style={styles.docimg}/>
            </View>
+
+           
+ <View style={{flexDirection:'row'}}>
+ <Image source={require('../../assets/images/dose_boy.png')} style={styles.docimg}/>
+
+<View style={{width:'50%',marginTop:40}}>
+  <Text style={[styles.slothead,{textAlign:'center'}]}>Set</Text>
+  <Button icon="clock" labelStyle={styles.txt} mode="contained" onPress={()=>{ AddCalendarEvent.presentEventCreatingDialog({title:'2nd Dose of vaccination', startDate:eventDate(),}).then(async(val)=>{ alert("happy to help :)")}).catch((e)=>{console.error(e);})
+           }} style={styles.btn2}>Reminder</Button>
+  <Text style={[styles.remhead2]}>for 2nd Dose</Text>
+
+</View>
+           </View>
+           
         </ScrollView>
     );
 }
@@ -82,14 +107,16 @@ headtitle:{fontSize:24,
 },
 img:{
 width:'100%',
-  height:200
+  height:300,
+  
 },
 view:{
   marginVertical:30,
+  backgroundColor:'#ffdfca'
 
 },
 head1:{
-  fontSize:28,
+  fontSize:34,
   fontWeight:'700',
   textAlign:'left'
   ,marginLeft:10
@@ -97,7 +124,7 @@ head1:{
   ,color:'#ff9551'
 },
 head2:{
-  fontSize:28,
+  fontSize:34,
   fontWeight:'700',
   textAlign:'right'
   ,marginRight:20
@@ -141,6 +168,21 @@ round: {
 txt:{
   fontSize:18,
   fontWeight:'700'
+}, btn2: {
+
+  borderRadius: 20,
+  width: 170,
+  alignSelf: 'center',
+  marginTop: 2
+  ,backgroundColor:'#ff9551'
+
+},
+remhead2:{
+  fontSize:18,
+  marginRight:20
+  ,fontWeight:'700'
+  ,color:'#ff9551',
+  textAlign:'right'
 }
 
 });
