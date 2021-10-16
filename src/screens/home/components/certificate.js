@@ -6,7 +6,7 @@ import auth from '@react-native-firebase/auth';
 import React,{useState} from 'react'
 import { View,StyleSheet,Text,Image} from 'react-native'
 import DatabaseServices from "../../../services/database_service";
-import { Button } from "react-native-paper";
+import { Button, Colors, IconButton } from "react-native-paper";
 
 export default function Certificate({url}) {
 
@@ -36,10 +36,10 @@ const uploadfunc = async(img)=>{
    await ref.putFile(img).catch((e)=>{
         flag=2;
         console.log(e);
-        alert("error!! please try again later!")
+        alert("error!! please try again later!");
     })
     if(flag==1){
-       try{ link= await ref.getDownloadURL();
+       try{ const link= await ref.getDownloadURL();
          await   DatabaseServices.uploadCertificate(link,auth().currentUser.uid);
                 alert("uploaded successfully");
     }
@@ -57,10 +57,17 @@ const uploadfunc = async(img)=>{
 
     return (
         <View style={style.box}>
-            <Text style={style.txt}>Certificate Section</Text>
+          <View style={{marginHorizontal:18,fexDirection:'row',justifyContent:'space-between'}}>
+              <Text style={style.txt}>Certificate Section</Text>
+              <IconButton icon="pencil" size={28} color={Colors.pink600} onPress={()=>{imgPicker();}} style={{position:'absolute',bottom:5,right:5,backgroundColor:Colors.pink100}}/>
+
+              </View>  
             
             { url==="" ? <></>:url==="unfill"?<Button mode='contained'onPress={()=>{imgPicker();}} style={style.btn}>
-  Upload Certificate</Button>:<Image style={style.img} source={{uri:'https://images.freeimages.com/images/large-previews/636/holding-a-dot-com-iii-1411477.jpg'}}/>}</View>
+  Upload Certificate</Button>:<View>
+      <Image style={style.img} source={{uri:url}}/>
+      </View>}
+      </View>
 
     );
 }
@@ -76,8 +83,9 @@ img:{ height: 300,
     borderRadius:8},
 txt:{fontSize:20,
     fontWeight:'700',
-     alignSelf:'center',
-     marginVertical:15},
+     marginVertical:15,
+    
+    },
 box:{
     elevation:20,
     color:'#f7efe1',

@@ -1,17 +1,37 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { View, Text,StyleSheet } from 'react-native'
 import DatePicker from 'react-native-date-picker';
-import auth from '@react-native-firebase/auth';
+import auth, { firebase } from '@react-native-firebase/auth';
 import { TextInput,Button,IconButton, Colors } from 'react-native-paper';
 import DatabaseServices from '../../../services/database_service';
 import {globalStyles} from '../../../styles/style'
-export default function Profile() {
+import firestore from '@react-native-firebase/firestore';
+export default function Profile({navigation}) {
 
     const [name,setName]=useState('');
     const [date,setDate]=useState(new Date());
     const [id,setId]=useState('');
     const [open, setOpen] = useState(false)
+
+  useEffect(()=>{
+    console.log("function");
+   const getValues= async ()=>{
+    const data = await firestore().collection('user').doc(auth().currentUser.uid).get();
+    console.log(data._data.name);
+    try{
+    if(data!=null & data._data !=""){
   
+      try{
+      setName(data._data.name);
+      //setDate(data._data.date);
+      setId(data._data.id);
+      }catch(e){console.log(e);}
+    }}
+    catch(e){console.log(e);}
+  }
+  getValues();
+  },[]);
+
     function  validation(name, date,id){
         if(name=="" | id ==""| date==""){
           alert("please fill all the required field");
@@ -33,8 +53,8 @@ export default function Profile() {
                 </Text>
                 <View style={{marginHorizontal:30}}>
 
-                <TextInput onChangeText={(val)=>setName(val)} val={name} left={<TextInput.Icon name="account" />}  type='flat' label="Full Name" style={[globalStyles.txt,globalStyles.round,{marginVertical:10,borderRadius:20}]} placeholder="Enter Your Full Name"/>
-                <TextInput onChangeText={(val)=>setId(val)} val={name} left={<TextInput.Icon name="key" />}  type='flat' label="Beneficiary Id" style={[globalStyles.txt,globalStyles.round,{marginVertical:10,borderRadius:20}]}  placeholder="Enter Your Beneficiary ID" />
+                <TextInput onChangeText={(val)=>setName(val)} value={name} left={<TextInput.Icon name="account" color={Colors.purple800} />} selectionColor={Colors.white}  type='flat' label="Full Name" style={[globalStyles.txt,globalStyles.round,{color:Colors.pink800,marginVertical:10,textAlign:'left',borderRadius:20}]} placeholder="Enter Your Full Name"/>
+                <TextInput onChangeText={(val)=>setId(val)} value={id} left={<TextInput.Icon  name="key" color={Colors.purple800} />}  type='flat' selectionColor={Colors.white}   label="Beneficiary Id" style={[globalStyles.txt,globalStyles.round,{marginVertical:10,textAlign:'left',borderRadius:20}]}  placeholder="Enter Your Beneficiary ID" />
                 <View style={{flexDirection:'row' ,justifyContent:'space-between' ,marginVertical:10}}>
                     <TextInput disabled={true} value={date.toDateString()} placeholder="Select your 1st dose" style={[globalStyles.txt,globalStyles.round,{width:250}]}  label="1st dose date"/>
                     
@@ -59,7 +79,8 @@ export default function Profile() {
 
 <Button icon="send" onPress={()=>{ 
     if(validation(name,date,id)){
-    DatabaseServices.setData(name,date.toDateString(),id,auth().currentUser.uid);}}} mode="contained" style={globalStyles.btn} >
+    DatabaseServices.setData(name,date.toDateString(),id,auth().currentUser.uid);}
+   navigation.pop(); }} mode="contained" style={globalStyles.btn} >
 SetDetails
   
   </Button>

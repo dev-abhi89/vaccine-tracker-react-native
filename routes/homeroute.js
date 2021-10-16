@@ -7,6 +7,8 @@ import Loading from '../src/loading';
 import  {LoginContext} from './loginPRovider';
 import AuthScreen from '../src/screens/auth_screen';
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import Profile from '../src/screens/home/components/profile';
+import SlotFinder from '../src/screens/apis/slot_finder';
 const Stk = createNativeStackNavigator();
 
 
@@ -38,6 +40,9 @@ return (
   name="Hometest"
   component={Home}
   />
+
+  <Stk.Screen name="profile" component={Profile}/>
+  <Stk.Screen name="Find your vaccination slot" component={SlotFinder} />
 </Stk.Navigator>
 
   </NavigationContainer>
